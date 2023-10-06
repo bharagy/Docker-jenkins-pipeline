@@ -18,8 +18,8 @@ pipeline {
     stage('Deploy') {
       steps {
         withCredentials([usernamePassword(credentialsId: "${DOCKER_REGISTRY_CREDS}", passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-          sh "echo \abcd12345 | docker login -u \dhividhivya --password-stdin docker.io"
-          sh 'docker push bharagy/pyimg'
+          sh "echo \$DOCKER-PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io"
+          sh 'docker push $DOCKER_BFLASK_IMAGE'
         }
       }
     }
